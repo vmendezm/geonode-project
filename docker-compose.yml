@@ -67,7 +67,7 @@ services:
        GEONODE_DATABASE_PASSWORD: geonode
        GEONODE_GEODATABASE: geonode_data
        GEONODE_GEODATABASE_PASSWORD: geonode_data
-       ASYNC_SIGNALS: 'True'
+       ASYNC_SIGNALS: 'False'
        BROKER_URL: amqp://guest:guest@rabbitmq:5672
        CELERY_CMD: celery worker --app={{project_name}}.celeryapp:app --broker=amqp://guest:guest@rabbitmq:5672/ -B -l INFO
        # CELERY_CMD: celery worker --app={{project_name}}.celeryapp:app --broker=memory:// -B -l INFO
@@ -84,8 +84,8 @@ services:
        GEOIP_PATH: /mnt/volumes/statics/geoip.db
        ALLOWED_HOSTS: "['*']"
        ADMIN_EMAILS: ''
-       DEFAULT_BACKEND_UPLOADER: geonode.importer
-       TIME_ENABLED: 'True'
+       DEFAULT_BACKEND_UPLOADER: geonode.rest
+       TIME_ENABLED: 'False'
        MOSAIC_ENABLED: 'False'
        GEOGIG_ENABLED: 'False'
        HAYSTACK_SEARCH: 'False'
@@ -154,7 +154,7 @@ services:
        GEONODE_DATABASE_PASSWORD: geonode
        GEONODE_GEODATABASE: geonode_data
        GEONODE_GEODATABASE_PASSWORD: geonode_data
-       ASYNC_SIGNALS: 'True'
+       ASYNC_SIGNALS: 'False'
        BROKER_URL: amqp://guest:guest@rabbitmq:5672
        DOCKER_ENV: production
        UWSGI_CMD: uwsgi --ini /usr/src/{{project_name}}/uwsgi.ini
@@ -170,8 +170,8 @@ services:
        GEOIP_PATH: /mnt/volumes/statics/geoip.db
        ALLOWED_HOSTS: "['*']"
        ADMIN_EMAILS: ''
-       DEFAULT_BACKEND_UPLOADER: geonode.importer
-       TIME_ENABLED: 'True'
+       DEFAULT_BACKEND_UPLOADER: geonode.rest
+       TIME_ENABLED: 'False'
        MOSAIC_ENABLED: 'False'
        GEOGIG_ENABLED: 'False'
        HAYSTACK_SEARCH: 'False'
