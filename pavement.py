@@ -168,7 +168,7 @@ def setup_qgis_server(options):
     # QGIS Server testing instance run on top of docker
     try:
         sh('scripts/misc/docker_check.sh')
-    except BaseException:
+    except Exception:
         info("You need to have docker and docker-compose installed.")
         return
 
@@ -178,12 +178,12 @@ def setup_qgis_server(options):
 
     try:
         os.makedirs('geonode/qgis_layer')
-    except BaseException:
+    except Exception:
         pass
 
     try:
         os.makedirs('geonode/qgis_tiles')
-    except BaseException:
+    except Exception:
         pass
 
     all_permission = 0o777
@@ -680,7 +680,7 @@ def start_geoserver(options):
 
             try:
                 sh(('java -version'))
-            except BaseException:
+            except Exception:
                 print "Java was not found in your path.  Trying some other options: "
                 javapath_opt = None
                 if os.environ.get('JAVA_HOME', None):
