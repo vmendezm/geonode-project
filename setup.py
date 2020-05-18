@@ -67,7 +67,7 @@ setup(
     packages=find_packages(),
     install_requires=REQUIREMENTS,
     dependency_links=[
-        "git+https://github.com/GeoNode/geonode.git#egg=geonode"
+        "GeoNode==3.0"
     ],
     include_package_data=True,
     zip_safe=False,
