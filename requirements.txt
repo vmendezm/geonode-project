@@ -1,4 +1,4 @@
 # GeoNode
 # from Pypi:
 GeoNode==3.0
-setuptools==46.2.0
+setuptools==46.4.0
