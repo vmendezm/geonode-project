@@ -2,7 +2,8 @@ version: '2.2'
 services:
 
   db:
-    image: geonode/postgis:11
+    image: arm64v8/postgres:11-alpine
+    build: ./docker/db/
     restart: unless-stopped
     container_name: db4${COMPOSE_PROJECT_NAME}
     stdin_open: true
@@ -44,6 +45,7 @@ services:
       - statics:/mnt/volumes/statics
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
+      - data:/data
     env_file:
       - .env
 
@@ -64,6 +66,7 @@ services:
       - statics:/mnt/volumes/statics
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
+      - data:/data
     env_file:
       - .env
     environment:
@@ -87,6 +90,7 @@ services:
       - statics:/mnt/volumes/statics
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
+      - data:/data
     env_file:
       - .env
     environment:
@@ -187,6 +191,7 @@ services:
     volumes:
       - jenkins_data:/var/jenkins_home
       - backup-restore:/backup_restore
+      - data:/data
     environment:
       - 'JENKINS_OPTS=--httpPort=${JENKINS_HTTP_PORT} --httpsPort=${JENKINS_HTTPS_PORT} --prefix=/jenkins'
 
@@ -207,3 +212,5 @@ volumes:
     name: ${COMPOSE_PROJECT_NAME}-dbbackups
   backup-restore:
     name: ${COMPOSE_PROJECT_NAME}-backup-restore
+  data:
+    name: ${COMPOSE_PROJECT_NAME}-data
