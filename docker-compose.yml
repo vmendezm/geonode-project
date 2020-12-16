@@ -46,6 +46,7 @@ services:
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
+      - tmp:/tmp
     env_file:
       - .env
 
@@ -67,6 +68,7 @@ services:
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
+      - tmp:/tmp
     env_file:
       - .env
     environment:
@@ -91,6 +93,7 @@ services:
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
+      - tmp:/tmp
     env_file:
       - .env
     environment:
@@ -177,3 +180,5 @@ volumes:
     name: ${COMPOSE_PROJECT_NAME}-backup-restore
   data:
     name: ${COMPOSE_PROJECT_NAME}-data
+  tmp:
+    name: ${COMPOSE_PROJECT_NAME}-tmp
