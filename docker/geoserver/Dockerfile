@@ -1,17 +1,17 @@
 FROM tomcat:9-jre8
-MAINTAINER GeoNode Development Team
+LABEL GeoNode Development Team
 
 #
 # Set GeoServer version and data directory
 #
-ENV GEOSERVER_VERSION=2.17.2
+ENV GEOSERVER_VERSION=2.17.4
 ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
 
 #
 # Download and install GeoServer
 #
 RUN cd /usr/local/tomcat/webapps \
-    && wget --no-check-certificate --progress=bar:force:noscroll https://www.dropbox.com/s/bdl6p64cuh4xu33/geoserver-${GEOSERVER_VERSION}.war?dl=1 -O geoserver-${GEOSERVER_VERSION}.war \
+    && wget --no-check-certificate --progress=bar:force:noscroll https://www.dropbox.com/s/a0m1ugxtso8xtyf/geoserver-${GEOSERVER_VERSION}.war?dl=1 -O geoserver-${GEOSERVER_VERSION}.war \
     && unzip -q geoserver-${GEOSERVER_VERSION}.war -d geoserver \
     && rm geoserver-${GEOSERVER_VERSION}.war \
     && mkdir -p $GEOSERVER_DATA_DIR
@@ -92,6 +92,7 @@ COPY multidump.sh /usr/local/tomcat/tmp
 COPY multidump-alt.sh /usr/local/tomcat/tmp
 
 RUN apt-get update \
+    && apt-get install -y procps less \
     && apt-get install -y openjdk-8-jdk python3 python3-pip python3-dev \
     && chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh \
     && chmod +x /usr/local/tomcat/tmp/setup_auth.sh \

@@ -28,7 +28,7 @@ services:
         org.geonode.deployment.name: ${COMPOSE_PROJECT_NAME}
 
   geoserver:
-    image: geonode/geoserver:2.17.2
+    image: geonode/geoserver:2.17.4
     build: ./docker/geoserver/
     restart: unless-stopped
     container_name: geoserver4${COMPOSE_PROJECT_NAME}
@@ -45,6 +45,7 @@ services:
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
+      - tmp:/tmp
     env_file:
       - .env
 
@@ -66,6 +67,7 @@ services:
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
+      - tmp:/tmp
     env_file:
       - .env
     environment:
@@ -90,6 +92,7 @@ services:
       - geoserver-data-dir:/geoserver_data/data
       - backup-restore:/backup_restore
       - data:/data
+      - tmp:/tmp
     env_file:
       - .env
     environment:
@@ -130,7 +133,7 @@ services:
       - .env
 
   data-dir-conf:
-    image: geonode/geoserver_data:2.17.2
+    image: geonode/geoserver_data:2.17.4
     restart: on-failure
     container_name: gsconf4${COMPOSE_PROJECT_NAME}
     labels:
@@ -176,3 +179,5 @@ volumes:
     name: ${COMPOSE_PROJECT_NAME}-backup-restore
   data:
     name: ${COMPOSE_PROJECT_NAME}-data
+  tmp:
+    name: ${COMPOSE_PROJECT_NAME}-tmp
